@@ -814,7 +814,7 @@ local function luau_load(module, env, luau_settings)
 
 						local params = if callB == 0 then top - callA else callB - 1
 						local ret_list = table_pack(
-							nativeNamecall(kv, table_unpack(stack, callA + 1, callA + params))
+							kv and nativeNamecall(kv, table_unpack(stack, callA + 1, callA + params)) or nil
 						)
 
 						if ret_list[1] == true then

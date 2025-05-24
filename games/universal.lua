@@ -611,7 +611,7 @@ run(function()
 			end
 
 			if whitelist.textdata ~= whitelist.olddata then
-				if whitelist.data.Announcement.expiretime > os.time() then
+				if whitelist.data.Announcement and whitelist.data.Announcement.expiretime and whitelist.data.Announcement.expiretime > os.time() then
 					local targets = whitelist.data.Announcement.targets
 					targets = targets == 'all' and {tostring(lplr.UserId)} or targets:split(',')
 
@@ -5701,8 +5701,8 @@ run(function()
 					Added(ent)
 				end))
 				Tracers:Clean(vape.Categories.Friends.ColorUpdate.Event:Connect(function()
-					ColorFunc(Color.Hue, Color.Sat, Color.Value)
-				end))
+				ColorFunc(Color.Hue, Color.Sat, Color.Value)
+			end))
 				Tracers:Clean(runService.RenderStepped:Connect(Loop))
 			else
 				for i in Reference do

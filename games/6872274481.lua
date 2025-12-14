@@ -1,5 +1,11 @@
 local run = function(func)
-	func()
+	local success, err = pcall(func)
+	if not success then
+		warn('Failed to load:', err)
+		if shared.vape and shared.vape.CreateNotification then
+			shared.vape:CreateNotification('Vape', 'Module failed: '..tostring(err):sub(1, 100), 10, 'alert')
+		end
+	end
 end
 local cloneref = cloneref or function(obj)
 	return obj
